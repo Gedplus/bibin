@@ -10,7 +10,7 @@ const ReclamationsSchema = new mongoose.Schema(
     CIN: String,
     justificative:  String,
     message: String,
-   
+    phoneNumber: String,
     Email: String,
          
   },

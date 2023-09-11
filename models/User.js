@@ -41,6 +41,10 @@ const UserSchema = new mongoose.Schema(
       type: Boolean ,
    
       default: false,
+    }, 
+    statue: {
+      type: String,
+    
     },
     city: String,
     street: String,

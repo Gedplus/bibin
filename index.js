@@ -78,13 +78,16 @@ mongoose
     res.json({ status: "error", error: "InvAlid Password" });
   });
   app.post("/register", async (req, res)=> {
-    const {name ,email , password,role} = req.body;
+    const {name ,email , password,role , statue, image, phoneNumber} = req.body;
     try{
       await User.create({
         name,
         email,
         password,
-        role
+        role,
+        statue,
+        image,
+        phoneNumber,
       });
       res.send({ status:"ok"});
     }catch(error){

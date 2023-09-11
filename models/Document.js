@@ -1,13 +1,11 @@
 import mongoose from "mongoose";
 
 import autoIncrement from 'mongoose-auto-increment';
+var url = "https://static.vecteezy.com/system/resources/previews/023/529/807/non_2x/blank-open-book-free-png.png";
 const DocumentSchema = new mongoose.Schema(
   {
    
-    statue: {
-      type: String,
-    
-    },
+  
 auteur: String,
     document: String,
     type: String,
@@ -15,8 +13,7 @@ auteur: String,
     prixLecture: String,
     prixTelechargement: String,
     profession: String,
-    carteIdentite: String,
-    pieceJustificatif: String,
+    Annee: String,
     titre: String,
     description: String,
     accepte:  {
@@ -45,6 +42,7 @@ auteur: String,
    
       default: 0,
     },
+    image:  {type: String, default: url},
   },
   { timestamps: true }
 );
