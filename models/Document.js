@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 import autoIncrement from 'mongoose-auto-increment';
-var url = "https://static.vecteezy.com/system/resources/previews/023/529/807/non_2x/blank-open-book-free-png.png";
+var url = "../data/image.jpg";
 const DocumentSchema = new mongoose.Schema(
   {
    

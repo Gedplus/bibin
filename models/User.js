@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-import autoIncrement from 'mongoose-auto-increment';
 var url = "https://i.stack.imgur.com/34AD2.jpg";
 const UserSchema = new mongoose.Schema(
   {
