@@ -20,10 +20,27 @@ export const getDocuments = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+export const getDocumentsUser = async (req, res) => {
+  try {
+    const products = await Document.find({ auteur: req.params.id});
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 
 export const getUtilisateurs = async (req, res) => {
   try {
     const customers = await User.find({ role: "utilisateur" }).select("-password");
+    res.status(200).json(customers);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+export const getDocApprover = async (req, res) => {
+  try {
+    const customers = await Document.find({ accepte: false });
     res.status(200).json(customers);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -138,6 +155,66 @@ console.log(document)
   const editDocument = new Document(document);
   try{
       await Document.updateOne({_id: request.params.id},{ $set: {pasvraiment: document.pasvraiment}});
+      response.status(201).json(editDocument);
+  } catch (error){
+      response.status(409).json({ message: error.message});     
+  }
+}
+export const getDocumentsUniversite= async (req, res) => {
+  try {
+    const products = await Document.find({ universite: req.params.id});
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+export const getDocumentsType= async (req, res) => {
+  try {
+    const products = await Document.find({ type: req.params.id});
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+export const getsearchDoc= async (req, res) => {
+  try {
+    const products = await Document.find({titre: new RegExp(req.params.id)});
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+
+export const editDocumentDI = async (request, response) => {
+  let document = request.body;
+console.log(document)
+  const editDocument = new Document(document);
+  try{
+      await Document.updateOne({_id: request.params.id},{ $set: {interessant: document.interessant-1}});
+      response.status(201).json(editDocument);
+  } catch (error){
+      response.status(409).json({ message: error.message});     
+  }
+}
+export const editDocumentDU = async (request, response) => {
+  let document = request.body;
+console.log(document)
+  const editDocument = new Document(document);
+  try{
+      await Document.updateOne({_id: request.params.id},{ $set: {utile: document.utile-1}});
+      response.status(201).json(editDocument);
+  } catch (error){
+      response.status(409).json({ message: error.message});     
+  }
+}
+
+export const editDocumentDE = async (request, response) => {
+  let document = request.body;
+console.log(document)
+  const editDocument = new Document(document);
+  try{
+      await Document.updateOne({_id: request.params.id},{ $set: {excellent: document.excellent-1}});
       response.status(201).json(editDocument);
   } catch (error){
       response.status(409).json({ message: error.message});     

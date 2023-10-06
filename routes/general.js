@@ -1,10 +1,11 @@
 
 import express from "express";
-import {  addContact, addDocument, addReclamation, addUser, deleteContact, deleteDoc, deleteReclation, getContact, getReclation, getUser} from "../controllers/general.js";
+import {  addContact, addDocument, addReclamation, addUser, deleteContact, deleteDoc, deleteReclation, getContact, getDocuemnt, getReclation, getUser} from "../controllers/general.js";
 
 const router = express.Router();
 
 router.get("/user/:id", getUser);
+router.get("/Document/:id", getDocuemnt);
 router.post("/Useradd", addUser);
 router.get("/contact", getContact);
 router.post("/contactAdd", addContact);

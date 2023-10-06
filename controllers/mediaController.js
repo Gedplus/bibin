@@ -115,3 +115,11 @@ console.log(media)
       response.status(409).json({ message: error.message});     
   }
 }
+export const getVideosUser = async (req, res) => {
+  try {
+    const products = await Media.find({ auteur: req.params.id});
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};

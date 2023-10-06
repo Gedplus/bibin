@@ -4,12 +4,7 @@ import autoIncrement from 'mongoose-auto-increment';
 const ContactSchema = new mongoose.Schema(
   {
    
-    email: {
-      type: String,
-      required: true,
-      max: 50,
-    
-    },
+ 
 
     subject: String,
     message: String,

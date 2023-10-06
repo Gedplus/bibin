@@ -10,7 +10,8 @@ import {
     editMediaP,
     editMediaU,
     getMediaById,
-    getVideos
+    getVideos,
+    getVideosUser
   
   } from "../controllers/mediaController.js";
   import multer from 'multer';
@@ -49,6 +50,7 @@ router.put('/mediaI/:id', editMediaI);
 router.put('/mediaU/:id', editMediaU);
 router.put('/mediaE/:id', editMediaE);
 router.put('/mediaP/:id', editMediaP);
+router.get('/mediaUser/:id', getVideosUser);
 router.delete('/:id', deleteMedia);
 router.get('/:id', getMediaById);
 router.put('/:id', editMedia);
