@@ -36,7 +36,7 @@ router.get("/utilisateurs", getUtilisateurs);
 router.get("/utilisateursDemande", getUtilisateursDemande);
 router.get("/documents", getDocuments);
 router.get("/DocApprover", getDocApprover);
-router.get('/documentsUser/:id', getDocumentsUser);
+router.get('/documentsUser/:id', getDocumentsUser); 
 router.get('/documentsU/:id', getDocumentsUniversite);
 router.get('/documentsType/:id', getDocumentsType);
 router.get('/Search/:id', getsearchDoc);
