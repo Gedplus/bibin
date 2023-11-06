@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/user/:id", getUser);
 router.get("/Document/:id", getDocuemnt);
-router.post("/Useradd", addUser);
+router.post("/Useradd", addUser); 
 router.get("/contact", getContact);
 router.post("/contactAdd", addContact);
 router.delete('/contact/:id', deleteContact);

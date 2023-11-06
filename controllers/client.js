@@ -94,15 +94,15 @@ export const getDocumentById = async (request, response) => {
 
 // Save data of edited user in the database
 export const editUser = async (request, response) => {
-  let user = request.body;
+  const { id } = request.params;
 
-  const editUser = new User(user);
-  try{
-      await User.updateOne({_id: request.params.id}, editUser);
-      response.status(201).json(editUser);
-  } catch (error){
-      response.status(409).json({ message: error.message});     
-  }
+  try {
+    const updatedUser = await User.findByIdAndUpdate(id, request.body, {
+      new: true,
+    });
+    response.json(updatedUser);
+  } catch (error) {
+    throw new Error(error);}
 }
 export const editDocument = async (request, response) => {
   let document = request.body;

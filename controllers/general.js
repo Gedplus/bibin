@@ -44,7 +44,7 @@ export const addReclamation = async (request, response) => {
   } catch (error){
       response.status(409).json({ message: error.message});     
   }
-}
+} 
 export const getContact = async (req, res) => {
   try {
     const Contacts= await Contact.find();
