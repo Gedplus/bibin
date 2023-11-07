@@ -106,13 +106,13 @@ mongoose
 
   const storage = multer.diskStorage({
     destination : function(req , file , cb){
-      if(!fs.existsSync("public")){
+      if(!fs.existsSync("https://api.bibintunisie.com/public")){
         fs.mkdirSync("public");
       }
-      if( !fs.existsSync("public/files")){
-        fs.mkdirSync("public/files");
+      if( !fs.existsSync("https://api.bibintunisie.com/public/files")){
+        fs.mkdirSync("https://api.bibintunisie.com/public/files");
       }
-      cb(null, "public/files");
+      cb(null, "https://api.bibintunisie.com/public/files");
     },
     filename: function (req , file , cb) {
       cb( null , Date.now() + file.originalname);
