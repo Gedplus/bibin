@@ -52,7 +52,7 @@ app.use("/pack", packRoutes);
 app.use("/user", userRoutes);
 app.use("/public" , express.static(path.join(__dirname,"public")))
 /* MONGOOSE SETUP */
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 5001;
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
