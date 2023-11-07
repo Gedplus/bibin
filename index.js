@@ -143,7 +143,7 @@ app.post("/upload-files", upload.single("file"), async (req, res) => {
             , prixTelechargement:prixTelechargement, Annee:Annee , auteur:auteur ,description:description , universite:universite ,accepte:accepte ,period:period });
     res.send({ status: "ok" });
   } catch (error) {
-    res.json({ status: error });
+    res.json(error);
   }
 });
 
