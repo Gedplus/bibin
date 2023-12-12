@@ -2,7 +2,7 @@
 import Document from "../models/Document.js";
 import User from "../models/User.js";
 
-
+import Reclamations from "../models/Reclamation.js";
 
 export const getCustomers = async (req, res) => {
   try {
@@ -106,7 +106,7 @@ export const editUser = async (request, response) => {
 }
 export const editDocument = async (request, response) => {
   let document = request.body;
-
+ 
   const editDocument = new Document(document);
   try{
       await Document.updateOne({_id: request.params.id},{ $set: {accepte:true}});
@@ -218,5 +218,15 @@ console.log(document)
       response.status(201).json(editDocument);
   } catch (error){
       response.status(409).json({ message: error.message});     
+  }
+}
+
+// Get a reclamation by id
+export const getreclamationById = async (request, response) => {
+  try{
+      const reclamation = await Reclamations.findById(request.params.id);
+      response.status(200).json(reclamation);
+  }catch( error ){
+      response.status(404).json({ message: error.message })
   }
 }

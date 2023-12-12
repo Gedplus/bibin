@@ -6,25 +6,29 @@ export const createUser = async (req, res) => {
     /**
      * TODO:Get the email from req.body
      */
-    console.log(req)
+
     const email = req.body.email;
     /**
      * TODO:With the help of email find the user exists or not
      */
-    const findUser = await User.findOne({ email: email });
-  
-    if (!findUser) {
+
+    try {
+    
+      
       /**
        * TODO:if user not found user create a new user
        */
       const newUser = await User.create(req.body);
       res.json(newUser);
-    } else {
+     }
       /**
        * TODO:if user found then thow an error: User already exists
        */
-      throw new Error("User Already Exists");
-    }
+   catch (error) {
+    res.status(404).json({ message: "User Already Exists" });
+
+  }
+    
   };
 
 

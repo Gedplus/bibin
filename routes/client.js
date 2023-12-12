@@ -22,6 +22,7 @@ import {
   getUserById,
   getUtilisateurs,
   getUtilisateursDemande,
+  getreclamationById,
   getsearchDoc,
 
 } from "../controllers/client.js";
@@ -54,4 +55,5 @@ router.get('/Doc/:id', getDocumentById);
 router.put('/documentsDI/:id', editDocumentDI);
 router.put('/documentsDU/:id', editDocumentDU);
 router.put('/documentsDE/:id', editDocumentDE);
+router.get('/reclamation/:id', getreclamationById);
 export default router;
