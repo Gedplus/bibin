@@ -24,6 +24,7 @@ import {
   getUtilisateursDemande,
   getreclamationById,
   getsearchDoc,
+  getsearchDocAvan,
 
 } from "../controllers/client.js";
 
@@ -41,6 +42,7 @@ router.get('/documentsUser/:id', getDocumentsUser);
 router.get('/documentsU/:id', getDocumentsUniversite);
 router.get('/documentsType/:id', getDocumentsType);
 router.get('/Search/:id', getsearchDoc);
+router.get('/SearchAvan/:id/:mot', getsearchDocAvan);
 router.put('/documents/:id', editDocument);
 router.put('/documentsI/:id', editDocumentI);
 router.put('/documentsU/:id', editDocumentU);

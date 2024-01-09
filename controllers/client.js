@@ -14,7 +14,7 @@ export const getCustomers = async (req, res) => {
 };
 export const getDocuments = async (req, res) => {
   try {
-    const products = await Document.find();
+    const products = await Document.find().sort({createdAt: -1});
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -22,7 +22,7 @@ export const getDocuments = async (req, res) => {
 };
 export const getDocumentsUser = async (req, res) => {
   try {
-    const products = await Document.find({ auteur: req.params.id});
+    const products = await Document.find({ auteur: req.params.id}).sort({createdAt: -1});
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -162,7 +162,7 @@ console.log(document)
 }
 export const getDocumentsUniversite= async (req, res) => {
   try {
-    const products = await Document.find({ universite: req.params.id});
+    const products = await Document.find({ universite: req.params.id}).sort({createdAt: -1});
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -170,7 +170,7 @@ export const getDocumentsUniversite= async (req, res) => {
 };
 export const getDocumentsType= async (req, res) => {
   try {
-    const products = await Document.find({ type: req.params.id});
+    const products = await Document.find({ type: req.params.id}).sort({createdAt: -1});
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -178,13 +178,22 @@ export const getDocumentsType= async (req, res) => {
 };
 export const getsearchDoc= async (req, res) => {
   try {
-    const products = await Document.find({titre: new RegExp(req.params.id)});
+    const products = await Document.find({titre: new RegExp(req.params.id)}).sort({createdAt: -1});
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
 };
-
+export const getsearchDocAvan= async (req, res) => {
+  try {
+    console.log(req.params.id)
+    console.log(req.params.mot)
+    const products = await Document.find({titre: new RegExp(req.params.mot) ,  universite: req.params.id }).sort({createdAt: -1});
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
 
 export const editDocumentDI = async (request, response) => {
   let document = request.body;
