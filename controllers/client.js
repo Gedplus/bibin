@@ -178,17 +178,39 @@ export const getDocumentsType= async (req, res) => {
 };
 export const getsearchDoc= async (req, res) => {
   try {
-    const products = await Document.find({titre: new RegExp(req.params.id)}).sort({createdAt: -1});
+    const products = await Document.find({titre: new RegExp(req.params.id , 'i')}).sort({createdAt: -1});
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
 };
+export const getsearchDocTypeUni= async (req, res) => {
+  try {
+    const products = await Document.find({type: req.params.Type ,  universite: req.params.uni}).sort({createdAt: -1});
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const getsearchAvanDocTypeUni= async (req, res) => {
+  try {
+    const products = await Document.find({titre: new RegExp(req.params.mot , 'i') ,type: req.params.Type ,  universite: req.params.uni}).sort({createdAt: -1});
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+
+
+
+
 export const getsearchDocAvan= async (req, res) => {
   try {
     console.log(req.params.id)
     console.log(req.params.mot)
-    const products = await Document.find({titre: new RegExp(req.params.mot) ,  universite: req.params.id }).sort({createdAt: -1});
+    const products = await Document.find({titre: new RegExp(req.params.mot , 'i') ,  universite: req.params.id }).sort({createdAt: -1});
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });

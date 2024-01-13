@@ -23,8 +23,10 @@ import {
   getUtilisateurs,
   getUtilisateursDemande,
   getreclamationById,
+  getsearchAvanDocTypeUni,
   getsearchDoc,
   getsearchDocAvan,
+  getsearchDocTypeUni,
 
 } from "../controllers/client.js";
 
@@ -42,6 +44,8 @@ router.get('/documentsUser/:id', getDocumentsUser);
 router.get('/documentsU/:id', getDocumentsUniversite);
 router.get('/documentsType/:id', getDocumentsType);
 router.get('/Search/:id', getsearchDoc);
+router.get('/TypeUni/:uni/:Type', getsearchDocTypeUni);
+router.get('/SearchAvanTypeUni/:uni/:Type/:mot', getsearchAvanDocTypeUni);
 router.get('/SearchAvan/:id/:mot', getsearchDocAvan);
 router.put('/documents/:id', editDocument);
 router.put('/documentsI/:id', editDocumentI);
