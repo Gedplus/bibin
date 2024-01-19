@@ -1,6 +1,7 @@
 import express from "express";
 import {
 
+  addToWishlist,
   deleteUser,
   editDocument,
   editDocumentDE,
@@ -56,6 +57,7 @@ router.delete('/:id', deleteUser);
 router.get('/:id', getUserById);
 router.put('/:id', editUser);
 router.get('/Doc/:id', getDocumentById);
+router.put("/wishlist/:id", addToWishlist)
 
 
 router.put('/documentsDI/:id', editDocumentDI);

@@ -162,7 +162,7 @@ console.log(document)
 }
 export const getDocumentsUniversite= async (req, res) => {
   try {
-    const products = await Document.find({ universite: req.params.id}).sort({createdAt: -1});
+    const products = await Document.find({ universite: req.params.id, accepte:true}).sort({Annee: -1} );
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -170,7 +170,7 @@ export const getDocumentsUniversite= async (req, res) => {
 };
 export const getDocumentsType= async (req, res) => {
   try {
-    const products = await Document.find({ type: req.params.id}).sort({createdAt: -1});
+    const products = await Document.find({ type: req.params.id ,accepte:true}).sort({Annee: -1});
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -178,7 +178,7 @@ export const getDocumentsType= async (req, res) => {
 };
 export const getsearchDoc= async (req, res) => {
   try {
-    const products = await Document.find({titre: new RegExp(req.params.id , 'i')}).sort({createdAt: -1});
+    const products = await Document.find({titre: new RegExp(req.params.id , 'i'), accepte:true}).sort({Annee: -1});
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -186,7 +186,7 @@ export const getsearchDoc= async (req, res) => {
 };
 export const getsearchDocTypeUni= async (req, res) => {
   try {
-    const products = await Document.find({type: req.params.Type ,  universite: req.params.uni}).sort({createdAt: -1});
+    const products = await Document.find({type: req.params.Type ,  universite: req.params.uni ,accepte:true}).sort({Annee: -1});
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -195,7 +195,7 @@ export const getsearchDocTypeUni= async (req, res) => {
 
 export const getsearchAvanDocTypeUni= async (req, res) => {
   try {
-    const products = await Document.find({titre: new RegExp(req.params.mot , 'i') ,type: req.params.Type ,  universite: req.params.uni}).sort({createdAt: -1});
+    const products = await Document.find({titre: new RegExp(req.params.mot , 'i') ,type: req.params.Type ,  universite: req.params.uni , accepte:true}).sort({Annee: -1});
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -210,7 +210,7 @@ export const getsearchDocAvan= async (req, res) => {
   try {
     console.log(req.params.id)
     console.log(req.params.mot)
-    const products = await Document.find({titre: new RegExp(req.params.mot , 'i') ,  universite: req.params.id }).sort({createdAt: -1});
+    const products = await Document.find({titre: new RegExp(req.params.mot , 'i') ,  universite: req.params.id ,accepte:true}).sort({Annee: -1});
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -261,3 +261,41 @@ export const getreclamationById = async (request, response) => {
       response.status(404).json({ message: error.message })
   }
 }
+
+export const addToWishlist = async (req, res) => {
+  const { id } = req.params;
+
+  const { prodId } = req.body;
+  console.log( prodId )
+  try {
+    const user = await User.findById(id);
+
+
+    const alreadyadded = user.wishlist.find((id) => id.toString() === prodId);
+    if (alreadyadded) {
+      let user = await User.findByIdAndUpdate(
+        id,
+        {
+          $pull: { wishlist: prodId },
+        },
+        {
+          new: true,
+        }
+      );
+      res.json(user);
+    } else {
+      let user = await User.findByIdAndUpdate(
+        id,
+        {
+          $push: { wishlist: prodId },
+        },
+        {
+          new: true,
+        }
+      );
+      res.json(user);
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+};
