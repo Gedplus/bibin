@@ -22,6 +22,7 @@ auteur: String,
       default: false,
     },
     period : String,
+    wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     interessant:  {
       type: Number  ,
    

@@ -14,7 +14,7 @@ export const getCustomers = async (req, res) => {
 };
 export const getDocuments = async (req, res) => {
   try {
-    const products = await Document.find().sort({createdAt: -1});
+    const products = await Document.find().sort({createdAt: -1}).populate("wishlist");;
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -263,37 +263,40 @@ export const getreclamationById = async (request, response) => {
 }
 
 export const addToWishlist = async (req, res) => {
-  const { id } = req.params;
+  const { id1 } = req.params;
 
   const { prodId } = req.body;
   console.log( prodId )
   try {
-    const user = await User.findById(id);
+    const document = await Document.findById(prodId);
+console.log(id1,"ssss")
 
-
-    const alreadyadded = user.wishlist.find((id) => id.toString() === prodId);
+    const alreadyadded = document.wishlist.find((id) => id.toString() === id1);
+    console.log(alreadyadded)
     if (alreadyadded) {
-      let user = await User.findByIdAndUpdate(
-        id,
+      let document = await Document.findByIdAndUpdate(
+        prodId,
         {
-          $pull: { wishlist: prodId },
+          $pull: { wishlist: id1 },
         },
         {
           new: true,
         }
       );
-      res.json(user);
+     
+      res.json(document);
     } else {
-      let user = await User.findByIdAndUpdate(
-        id,
+      let document = await Document.findByIdAndUpdate(
+        prodId,
         {
-          $push: { wishlist: prodId },
+          $push: { wishlist: id1 },
         },
         {
           new: true,
         }
       );
-      res.json(user);
+  
+      res.json(document);
     }
   } catch (error) {
     throw new Error(error);

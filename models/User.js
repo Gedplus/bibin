@@ -46,7 +46,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
     },
  
-    wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Document" }],
+ 
     phoneNumber: String,
 
     role: {

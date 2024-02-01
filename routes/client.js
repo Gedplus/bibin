@@ -57,7 +57,7 @@ router.delete('/:id', deleteUser);
 router.get('/:id', getUserById);
 router.put('/:id', editUser);
 router.get('/Doc/:id', getDocumentById);
-router.put("/wishlist/:id", addToWishlist)
+router.put("/wishlist/:id1", addToWishlist)
 
 
 router.put('/documentsDI/:id', editDocumentDI);
