@@ -13,6 +13,7 @@ import Document from "./models/Document.js";
 import packRoutes from "./routes/pack.js";
 import mediaRoutes from "./routes/media.js";
 import userRoutes from "./routes/userRoute.js"
+import payementRoutes from "./routes/payement.js"
 import User from "./models/User.js";
 import {
   dataContact,
@@ -50,6 +51,7 @@ app.use("/management", managementRoutes);
 app.use("/media", mediaRoutes);
 app.use("/pack", packRoutes);
 app.use("/user", userRoutes);
+app.use("/payement", payementRoutes);
 app.use("/public" , express.static(path.join(__dirname,"public")))
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 5002;

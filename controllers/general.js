@@ -2,6 +2,7 @@ import Contact from "../models/Contact.js";
 import Document from "../models/Document.js";
 import Reclamations from "../models/Reclamation.js";
 import User from "../models/User.js";
+import Demandes from "../models/demandevirement.js";
 
 export const getUser = async (req, res) => {
     try {
@@ -107,3 +108,67 @@ export const getDocuemnt = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 }; 
+export const addDemande = async (request, response) => {
+  const demande = request.body;
+  
+  const newDemande = new Demandes(demande);
+  try{
+      await newDemande.save();
+      response.status(201).json(newDemande);
+  } catch (error){
+      response.status(409).json({ message: error.message});     
+  }
+}
+export const getDemande = async (req, res) => {
+  try {
+    const demandes = await Demandes.find({ traiter: false });
+    res.status(200).json(demandes);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+export const deleteDemande = async (request, response) => {
+  try{
+      await Demandes.deleteOne({_id: request.params.id});
+      response.status(201).json("doc supprimé avec succès");
+  } catch (error){
+      response.status(409).json({ message: error.message});     
+  }
+}
+
+export const getaDemande = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const demande = await Demandes.findById(id);
+    res.status(200).json(demande);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}; 
+export const updatesoldeTraiter = async (req, res) => {
+  const id = req.params;
+console.log(id)
+let solde = req.body.solde;
+console.log(solde)
+const useredit = await User.find({_id: id.id});
+
+try{
+  console.log(useredit)
+  await User.updateOne({_id: id.id},{ $set: {solde: useredit[0].solde - solde }} );
+  res.status(201).json(useredit);
+} catch (error){
+res.status(409).json({ message: error.message});     
+}
+
+}
+export const editDemande = async (request, response) => {
+  let document = request.body;
+console.log(document)
+  const editDemande = new Demandes(document);
+  try{
+      await Demandes.updateOne({_id: request.params.id},{ $set: {traiter :true}});
+      response.status(201).json(editDemande);
+  } catch (error){
+      response.status(409).json({ message: error.message});     
+  }
+}

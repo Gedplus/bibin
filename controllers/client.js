@@ -302,3 +302,24 @@ console.log(id1,"ssss")
     throw new Error(error);
   }
 };
+
+
+
+
+
+export const updatesoldeUser = async (req, res) => {
+  const id = req.params;
+console.log(id)
+let solde = req.body.solde;
+console.log(solde)
+const useredit = await User.find({_id: id.id});
+
+try{
+  console.log(useredit)
+  await User.updateOne({_id: id.id},{ $set: {solde: useredit[0].solde + solde , nbrAchats : useredit[0].nbrAchats +  1 }} );
+  res.status(201).json(useredit);
+} catch (error){
+res.status(409).json({ message: error.message});     
+}
+
+}

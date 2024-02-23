@@ -28,6 +28,7 @@ import {
   getsearchDoc,
   getsearchDocAvan,
   getsearchDocTypeUni,
+  updatesoldeUser,
 
 } from "../controllers/client.js";
 
@@ -58,7 +59,7 @@ router.get('/:id', getUserById);
 router.put('/:id', editUser);
 router.get('/Doc/:id', getDocumentById);
 router.put("/wishlist/:id1", addToWishlist)
-
+router.put("/editsold/:id" ,updatesoldeUser)
 
 router.put('/documentsDI/:id', editDocumentDI);
 router.put('/documentsDU/:id', editDocumentDU);

@@ -45,7 +45,22 @@ const UserSchema = new mongoose.Schema(
     statue: {
       type: String,
     },
- 
+
+  solde: {
+      type: Number ,
+   
+      default: 0,
+    },
+    nbrAchats: {
+      type: Number ,
+   
+      default: 0,
+    },
+    CIN: {
+      type: String ,
+   
+      default: "",
+    },
  
     phoneNumber: String,
 
