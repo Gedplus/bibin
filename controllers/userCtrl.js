@@ -35,9 +35,9 @@ export const createUser = async (req, res) => {
 // Login a user
 export const loginUserCtrl = async (req, res) => {
     const { email, password } = req.body;
-    // check if user exists or not
+    // check if user exists or not 
     try {
-    const findUser = await User.findOne({ email });
+    const findUser = await User.findOne({ email: new RegExp( email , 'i') });
     if (findUser && (await findUser.isPasswordMatched(password))) {
   
    
@@ -51,7 +51,7 @@ export const loginUserCtrl = async (req, res) => {
     } else {
       throw new Error("Invalid Credentials");
     } }  catch (error) {
-      res.status(404).json({ message: "User Already Exists" });
+      res.status(500).json({ message: "User Already Exists" });
   
     }
   };
