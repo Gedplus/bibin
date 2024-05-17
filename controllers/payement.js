@@ -4,7 +4,7 @@ export const add = async (request, response) => {
 const url="https://developers.flouci.com/api/generate_payment"
 console.log(request.body.amount)
 const payload = {
-    "app_token": "48012b56-eea3-49ce-b784-9e2f8cef11b6", 
+    "app_token": "743ad7dc-c21c-44b2-8f80-69ccb57f1393", 
     "app_secret": process.env.FLOUCI_SECRET,
     "amount": request.body.amount,
     "accept_card": "true",
@@ -29,7 +29,7 @@ await axios.get(`https://developers.flouci.com/api/verify_payment/${payement_id}
 
 headers:{
     'Content-Type': 'application/json',
-    'apppublic': '48012b56-eea3-49ce-b784-9e2f8cef11b6',
+    'apppublic': '743ad7dc-c21c-44b2-8f80-69ccb57f1393',
     'appsecret': process.env.FLOUCI_SECRET,
 }
 
